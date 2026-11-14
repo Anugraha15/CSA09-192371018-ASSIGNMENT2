@@ -1,0 +1,15 @@
+DATA SET 1 (ties at points, goal difference and name level)
+  correct comparator : [Dragons(9,6), Eagles(9,6), Hawks(9,6), Bisons(9,4), Panthers(9,4), Aces(6,3), Cobras(6,1), Falcons(6,1), Wolves(3,0), Zebras(3,0)]
+  hand-derived order : [Dragons(9,6), Eagles(9,6), Hawks(9,6), Bisons(9,4), Panthers(9,4), Aces(6,3), Cobras(6,1), Falcons(6,1), Wolves(3,0), Zebras(3,0)]
+  ranking() returns an independent copy (clearing it leaves the board intact): true
+  FAULT 2 (no name tie-break): [Eagles(9,6), Dragons(9,6), Hawks(9,6), Panthers(9,4), Bisons(9,4), Aces(6,3), Cobras(6,1), Falcons(6,1), Zebras(3,0), Wolves(3,0)]   <- Panthers before Bisons, only insertion order decides
+  FAULT 3 (goal diff ascending): [Bisons(9,4), Panthers(9,4), Dragons(9,6), Eagles(9,6), Hawks(9,6), Cobras(6,1), Falcons(6,1), Aces(6,3), Wolves(3,0), Zebras(3,0)]
+
+DATA SET 2 (large values: goal difference +-2,000,000,000 and points +-2,000,000,000)
+  CORRECT      : antisymmetry violations=0, transitivity violations=0, equal-substitution violations=0
+  SUBTRACTION  : antisymmetry violations=0, transitivity violations=18, equal-substitution violations=0
+      e.g. A(0,2000000000) < C(0,0) < B(0,-2000000000) but compare(a,c)=294967296
+  NO_NAME      : antisymmetry violations=0, transitivity violations=0, equal-substitution violations=0  (consistent but INCOMPLETE: teams tied on both numbers compare as equal, so their order depends on insertion order)
+  WRONG_DIR    : antisymmetry violations=0, transitivity violations=0, equal-substitution violations=0  (consistent, but ranks the wrong way - consistency alone is not correctness)
+  sorting 500 teams with SUBTRACTION threw: Comparison method violates its general contract!
+  SUBTRACTION threw IllegalArgumentException in 3 of 20 random 500-team sorts; CORRECT threw in 0.

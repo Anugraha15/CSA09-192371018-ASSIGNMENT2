@@ -1,0 +1,42 @@
+Java 21.0.13
+
+== 1. CORRECTNESS CHECK (8 patients, order worked out by hand) ==
+  arrival order      : Ravi(S3) Meena(S1) John(S3) Asha(S5) Kumar(S1) Lata(S2) Divya(S4) Farah(S2)
+  hand-derived order : Meena(S1) Kumar(S1) Lata(S2) Farah(S2) Ravi(S3) John(S3) Divya(S4) Asha(S5)
+  printing the queue directly  : [Meena(S1), Kumar(S1), Lata(S2), Farah(S2), Ravi(S3), John(S3), Divya(S4), Asha(S5)]   <- this is the internal heap-array order (it only coincides with treatment order here)
+  poll() until empty           : Meena(S1) Kumar(S1) Lata(S2) Farah(S2) Ravi(S3) John(S3) Divya(S4) Asha(S5)
+  matches hand-derived order   : true
+  NOTE: for THIS arrival order the heap array happens to be sorted already. A different arrival order shows the real behaviour:
+  6-patient instance, printed directly : [Meena(S1), Kumar(S1), Lata(S2), Asha(S5), Ravi(S3), John(S3)]   <- NOT in treatment order (heap array order)
+  6-patient instance, poll() until empty: Meena(S1) Kumar(S1) Lata(S2) Ravi(S3) John(S3) Asha(S5)
+  WITHOUT arrival tie-break    : Meena(S1) Kumar(S1) Farah(S2) Lata(S2) Ravi(S3) John(S3) Divya(S4) Asha(S5)   <- equal severities are not guaranteed to stay in arrival order
+
+== 2. GROWTH INVESTIGATION  (prediction: admit O(log n), serve O(log n)) ==
+n            admit all ms   serve all ms     ns per admit     ns per serve
+10000                3.22           8.63            321.6            862.8
+100000              10.23          62.59            102.3            625.9
+500000              86.37         485.38            172.7            970.8
+1000000            367.79        1298.00            367.8           1298.0
+
+== 3. ALTERNATIVE DESIGNS (admit n patients, then serve all) ==
+n          design                       admit all ms   serve all ms
+2000       PriorityQueue                        0.27           0.98
+2000       Sorted LinkedList                   14.59           0.09
+2000       5 FIFO queues                        0.23           0.15
+10000      PriorityQueue                        0.78           5.06
+10000      Sorted LinkedList                  453.36           0.18
+10000      5 FIFO queues                        0.27           0.08
+40000      PriorityQueue                        3.48          52.24
+40000      Sorted LinkedList                10769.56           1.30
+40000      5 FIFO queues                        1.47           0.41
+
+== 4. STARVATION: one S5 patient waits while one S1 patient arrives EVERY tick and the doctor treats one patient per tick ==
+  STRICT priority            Asha(S5) served at tick: NEVER (10000 ticks) | longest wait of a S1 patient: 0 tick(s) | patients still waiting: 1
+  AGING (W=10)               Asha(S5) served at tick: 40       | longest wait of a S1 patient: 1 tick(s) | patients still waiting: 1
+  AGING (W=100)              Asha(S5) served at tick: 400      | longest wait of a S1 patient: 1 tick(s) | patients still waiting: 1
+  (bound: a S5 patient is overtaken only by patients with a smaller score, i.e. at most about 4*W ticks of newer critical arrivals)
+
+== 5. DEPLOYMENT: one city-hospital day = 5,000 patients (admit all + serve all) ==
+  5,000 admits + 5,000 serves took 3.198 ms in total (average of 20 runs) -> 0.6 microseconds per patient
+  arrival rate = 5000 / 86400 s = 0.058 patients per second
+(sink=12477000)

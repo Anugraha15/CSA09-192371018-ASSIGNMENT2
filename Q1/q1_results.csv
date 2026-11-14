@@ -1,0 +1,37 @@
+workload,fields,tickets,method,avg_ms_per_run,avg_alloc_KB_per_run
+"W1 short ticket (10 fields) x 50000 tickets",10,50000,String +,23.8425,62500.0
+"W1 short ticket (10 fields) x 50000 tickets",10,50000,StringBuilder,31.0455,42187.5
+"W1 short ticket (10 fields) x 50000 tickets",10,50000,StringBuffer,19.1296,42578.1
+"W1 short ticket (10 fields) x 50000 tickets",10,50000,String.join,9.0781,12500.0
+"W1 short ticket (10 fields) x 50000 tickets",10,50000,StringJoiner,34.8215,17968.8
+"W1 short ticket (10 fields) x 50000 tickets",10,50000,String.format,90.0892,151562.5
+"W2 normal ticket (50 fields) x 10000 tickets",50,10000,String +,45.2676,226171.9
+"W2 normal ticket (50 fields) x 10000 tickets",50,10000,StringBuilder,10.5442,32187.5
+"W2 normal ticket (50 fields) x 10000 tickets",50,10000,StringBuffer,12.6271,32265.6
+"W2 normal ticket (50 fields) x 10000 tickets",50,10000,String.join,10.8615,10625.0
+"W2 normal ticket (50 fields) x 10000 tickets",50,10000,StringJoiner,25.5067,14218.8
+"W2 normal ticket (50 fields) x 10000 tickets",50,10000,String.format,146.5887,163437.5
+"W3a giant ticket 5000 fields x 1",5000,1,String +,48.0994,225910.6
+"W3a giant ticket 5000 fields x 1",5000,1,StringBuilder,0.2014,379.4
+"W3a giant ticket 5000 fields x 1",5000,1,StringBuffer,0.2309,379.4
+"W3a giant ticket 5000 fields x 1",5000,1,String.join,0.1583,110.7
+"W3a giant ticket 5000 fields x 1",5000,1,StringJoiner,0.4215,155.4
+"W3a giant ticket 5000 fields x 1",5000,1,String.format,1.2200,1784.0
+"W3b giant ticket 10000 fields x 1",10000,1,String +,311.5364,912510.2
+"W3b giant ticket 10000 fields x 1",10000,1,StringBuilder,0.3870,759.7
+"W3b giant ticket 10000 fields x 1",10000,1,StringBuffer,0.5829,759.7
+"W3b giant ticket 10000 fields x 1",10000,1,String.join,0.5617,222.5
+"W3b giant ticket 10000 fields x 1",10000,1,StringJoiner,0.8624,311.6
+"W3b giant ticket 10000 fields x 1",10000,1,String.format,2.0874,3570.5
+"W3c giant ticket 20000 fields x 1",20000,1,String +,763.0037,3718087.5
+"W3c giant ticket 20000 fields x 1",20000,1,StringBuilder,0.3355,1529.9
+"W3c giant ticket 20000 fields x 1",20000,1,StringBuffer,0.5743,1529.9
+"W3c giant ticket 20000 fields x 1",20000,1,String.join,0.3388,455.8
+"W3c giant ticket 20000 fields x 1",20000,1,StringJoiner,0.6121,633.9
+"W3c giant ticket 20000 fields x 1",20000,1,String.format,1.9311,7153.2
+"W3d giant ticket 40000 fields x 1",40000,1,String +,4768.9008,15156390.7
+"W3d giant ticket 40000 fields x 1",40000,1,StringBuilder,1.9088,3070.4
+"W3d giant ticket 40000 fields x 1",40000,1,StringBuffer,2.1434,3070.4
+"W3d giant ticket 40000 fields x 1",40000,1,String.join,1.2946,922.4
+"W3d giant ticket 40000 fields x 1",40000,1,StringJoiner,2.6689,1278.4
+"W3d giant ticket 40000 fields x 1",40000,1,String.format,10.6066,14318.7

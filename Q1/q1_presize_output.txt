@@ -1,0 +1,5 @@
+Short ticket: 10 fields x 50000 tickets, avg of 7 runs after 3 warm-ups
+String +                                 27.212 ms/run
+StringBuilder (default capacity 16)      15.694 ms/run
+StringBuilder (capacity 256)              9.400 ms/run
+StringBuffer (capacity 256)              11.783 ms/run

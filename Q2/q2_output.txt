@@ -1,0 +1,96 @@
+Java 21.0.13 | K=1000 positional ops per measurement | avg of 5 runs after 2 warm-ups
+
+===== playlist size n = 10000 =====
+structure    operation                    avg ms
+ArrayList    add at end (n adds)           0.727
+ArrayList    insert at front xK            2.350
+ArrayList    remove front xK               1.915
+ArrayList    insert middle xK              1.268
+ArrayList    remove middle xK              1.158
+ArrayList    get k-th (random) xK          0.079
+ArrayList    iterate whole list            0.811
+LinkedList   add at end (n adds)           0.347
+LinkedList   insert at front xK            0.132
+LinkedList   remove front xK               0.072
+LinkedList   insert middle xK             19.646
+LinkedList   remove middle xK             18.076
+LinkedList   get k-th (random) xK         10.274
+LinkedList   iterate whole list            0.382
+ArrayDeque   add at end (n adds)           1.068
+ArrayDeque   insert at front xK            0.060
+ArrayDeque   remove front xK               0.044
+ArrayDeque   iterate whole list            0.915
+PlainArray   add at end (n adds)           0.499
+PlainArray   insert at front xK           57.251
+PlainArray   remove front xK              39.388
+PlainArray   insert middle xK             22.750
+PlainArray   get k-th (random) xK          0.099
+PlainArray   iterate whole list            0.518
+
+===== playlist size n = 100000 =====
+structure    operation                    avg ms
+ArrayList    add at end (n adds)           0.862
+ArrayList    insert at front xK           23.802
+ArrayList    remove front xK              19.934
+ArrayList    insert middle xK             10.640
+ArrayList    remove middle xK             10.474
+ArrayList    get k-th (random) xK          0.079
+ArrayList    iterate whole list            3.595
+LinkedList   add at end (n adds)           1.930
+LinkedList   insert at front xK            0.048
+LinkedList   remove front xK               0.048
+LinkedList   insert middle xK            189.826
+LinkedList   remove middle xK            192.069
+LinkedList   get k-th (random) xK         94.197
+LinkedList   iterate whole list            1.689
+ArrayDeque   add at end (n adds)           2.375
+ArrayDeque   insert at front xK            0.055
+ArrayDeque   remove front xK               0.051
+ArrayDeque   iterate whole list            2.346
+PlainArray   add at end (n adds)           1.812
+PlainArray   insert at front xK          427.128
+PlainArray   remove front xK             385.425
+PlainArray   insert middle xK            245.240
+PlainArray   get k-th (random) xK          0.063
+PlainArray   iterate whole list            1.054
+
+===== playlist size n = 300000 =====
+structure    operation                    avg ms
+ArrayList    add at end (n adds)           3.891
+ArrayList    insert at front xK           65.069
+ArrayList    remove front xK              65.551
+ArrayList    insert middle xK             32.864
+ArrayList    remove middle xK            124.891
+ArrayList    get k-th (random) xK          0.560
+ArrayList    iterate whole list            3.082
+LinkedList   add at end (n adds)           3.363
+LinkedList   insert at front xK            0.064
+LinkedList   remove front xK               0.095
+LinkedList   insert middle xK            580.380
+LinkedList   remove middle xK            582.238
+LinkedList   get k-th (random) xK        295.746
+LinkedList   iterate whole list            2.555
+ArrayDeque   add at end (n adds)           4.579
+ArrayDeque   insert at front xK            0.042
+ArrayDeque   remove front xK               0.039
+ArrayDeque   iterate whole list            0.835
+PlainArray   add at end (n adds)           5.534
+PlainArray   insert at front xK         6579.403
+PlainArray   remove front xK            5897.078
+PlainArray   insert middle xK           2836.747
+PlainArray   get k-th (random) xK          0.109
+PlainArray   iterate whole list            0.502
+
+===== CHANGED CONDITION: 'Up Next' queue, 10000 mixed operations (addLast, addFirst, removeFirst in 1:1:2 ratio) =====
+structure    queue size n       avg ms
+ArrayDeque          10000        0.679
+LinkedList          10000        1.215
+ArrayList           10000       15.231
+ArrayDeque         100000        0.582
+LinkedList         100000        0.666
+ArrayList          100000      156.915
+ArrayDeque         300000        0.162
+LinkedList         300000        0.281
+ArrayList          300000      487.312
+
+(sink=1405765995060 prevents dead-code elimination)

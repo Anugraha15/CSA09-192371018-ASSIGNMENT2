@@ -1,0 +1,11 @@
+Java 21.0.13 | avg of 5 runs after 2 warm-ups
+n          approach                               avg ms
+10000      Comparator chain (1 sort)               17.12   same result as chain: true
+10000      Comparable.compareTo (1 sort)           22.37   same result as chain: true
+10000      3 stable sorts name>gd>points           25.27   same result as chain: true
+100000     Comparator chain (1 sort)              124.51   same result as chain: true
+100000     Comparable.compareTo (1 sort)          102.06   same result as chain: true
+100000     3 stable sorts name>gd>points          322.13   same result as chain: true
+500000     Comparator chain (1 sort)             1075.54   same result as chain: true
+500000     Comparable.compareTo (1 sort)          780.18   same result as chain: true
+500000     3 stable sorts name>gd>points         2271.45   same result as chain: true

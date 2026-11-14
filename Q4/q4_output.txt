@@ -1,0 +1,27 @@
+Java 21.0.13 | 100000 lookups per measurement | avg of 5 runs after 2 warm-ups
+
+===== n = 10000 medicines =====
+structure         put all 100k lookups code-order rpt added-order rpt  code ok   add ok retained MB
+HashMap              2.83         9.67          15.13          16.52     true     true       -0.1
+TreeMap             10.10        55.64           2.57          16.81     true     true        0.4
+LinkedHashMap        8.23         3.48          18.20           0.21     true     true        0.4
+Hashtable            2.68         6.10          10.71          17.65     true     true        0.4
+SortedArray    lookups(100k)=48.33 ms | 1000 inserts=2.06 ms | code-order report=0.01 ms   (HashMap 1000 put+remove=0.62 ms, TreeMap=1.27 ms)
+
+===== n = 100000 medicines =====
+structure         put all 100k lookups code-order rpt added-order rpt  code ok   add ok retained MB
+HashMap             20.31         8.38          85.58          92.05     true     true        5.1
+TreeMap            109.42       117.18           8.60          88.38     true     true        3.8
+LinkedHashMap       30.95        13.39         135.42           1.62     true     true        5.8
+Hashtable           51.09        12.24          76.20         105.50     true     true        4.1
+SortedArray    lookups(100k)=141.14 ms | 1000 inserts=1.42 ms | code-order report=0.56 ms   (HashMap 1000 put+remove=0.29 ms, TreeMap=0.97 ms)
+
+===== n = 500000 medicines =====
+structure         put all 100k lookups code-order rpt added-order rpt  code ok   add ok retained MB
+HashMap            496.35        26.21         591.87         601.69     true     true       20.3
+TreeMap           1036.32       205.78          56.34         747.97     true     true       19.1
+LinkedHashMap      445.08        17.33         880.80          14.34     true     true       24.1
+Hashtable          361.36        19.38         600.21         727.85     true     true       19.3
+SortedArray    lookups(100k)=196.08 ms | 1000 inserts=4.31 ms | code-order report=0.84 ms   (HashMap 1000 put+remove=0.15 ms, TreeMap=0.69 ms)
+
+(sink=1369469860)

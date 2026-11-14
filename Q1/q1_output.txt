@@ -1,0 +1,59 @@
+Java 21.0.13 | Windows 11 | cores=12
+
+== W1 short ticket (10 fields) x 50000 tickets ==
+String +             29.545 ms/run        62500.0 KB allocated/run
+StringBuilder        34.569 ms/run        42187.5 KB allocated/run
+StringBuffer         19.772 ms/run        42578.1 KB allocated/run
+String.join          17.064 ms/run        12500.0 KB allocated/run
+StringJoiner         28.009 ms/run        17968.8 KB allocated/run
+String.format        97.578 ms/run       151562.5 KB allocated/run
+
+== W2 normal ticket (50 fields) x 10000 tickets ==
+String +             48.946 ms/run       226171.9 KB allocated/run
+StringBuilder        12.042 ms/run        32187.5 KB allocated/run
+StringBuffer         15.634 ms/run        32265.6 KB allocated/run
+String.join          27.421 ms/run        10625.0 KB allocated/run
+StringJoiner         28.688 ms/run        14218.8 KB allocated/run
+String.format       101.518 ms/run       163437.5 KB allocated/run
+
+== W3a giant ticket 5000 fields x 1 ==
+String +             73.679 ms/run       225910.6 KB allocated/run
+StringBuilder         0.182 ms/run          379.4 KB allocated/run
+StringBuffer          0.188 ms/run          379.4 KB allocated/run
+String.join           0.296 ms/run          110.7 KB allocated/run
+StringJoiner          0.244 ms/run          155.4 KB allocated/run
+String.format         1.163 ms/run         1784.0 KB allocated/run
+
+== W3b giant ticket 10000 fields x 1 ==
+String +            225.712 ms/run       912510.2 KB allocated/run
+StringBuilder         0.284 ms/run          759.7 KB allocated/run
+StringBuffer          0.392 ms/run          759.7 KB allocated/run
+String.join           0.344 ms/run          222.5 KB allocated/run
+StringJoiner          0.664 ms/run          311.6 KB allocated/run
+String.format         2.057 ms/run         3570.5 KB allocated/run
+
+== W3c giant ticket 20000 fields x 1 ==
+String +            998.297 ms/run      3718087.5 KB allocated/run
+StringBuilder         0.690 ms/run         1529.9 KB allocated/run
+StringBuffer          0.826 ms/run         1529.9 KB allocated/run
+String.join           0.947 ms/run          455.8 KB allocated/run
+StringJoiner          1.660 ms/run          633.9 KB allocated/run
+String.format         4.267 ms/run         7153.2 KB allocated/run
+
+== W3d giant ticket 40000 fields x 1 ==
+String +           3842.917 ms/run     15156390.7 KB allocated/run
+StringBuilder         1.840 ms/run         3070.4 KB allocated/run
+StringBuffer          2.274 ms/run         3070.4 KB allocated/run
+String.join           2.212 ms/run          922.4 KB allocated/run
+StringJoiner          3.102 ms/run         1278.4 KB allocated/run
+String.format         9.618 ms/run        14318.7 KB allocated/run
+
+== Analytical counts per ticket ==
+n=    10  '+' creates     10 intermediate Strings, copies             860 chars | final length       158 | StringBuilder resizes: 4
+n=    50  '+' creates     50 intermediate Strings, copies          21,015 chars | final length       832 | StringBuilder resizes: 6
+n=  5000  '+' creates   5000 intermediate Strings, copies     231,115,020 chars | final length    93,340 | StringBuilder resizes: 13
+n= 10000  '+' creates  10000 intermediate Strings, copies     933,975,545 chars | final length   187,790 | StringBuilder resizes: 14
+n= 20000  '+' creates  20000 intermediate Strings, copies   3,806,451,595 chars | final length   386,690 | StringBuilder resizes: 15
+n= 40000  '+' creates  40000 intermediate Strings, copies  15,518,403,695 chars | final length   784,490 | StringBuilder resizes: 16
+Runtime memory (20000 fields) String +       before=3,612,664 B after=265,561,976 B delta=261,949,312 B (result length 386690)
+Runtime memory (20000 fields) StringBuilder  before=2,564,624 B after=4,203,040 B delta=1,638,416 B (result length 386690)
