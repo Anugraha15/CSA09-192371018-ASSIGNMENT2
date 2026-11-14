@@ -1,0 +1,17 @@
+Java 21.0.13
+
+== CORRECTNESS OF THE REDESIGN (compared with the original after every step) ==
+  300 report comparisons (random adds / updates / removals / re-adds): all identical = true
+
+== A. DIAGNOSIS: cost of ONE evening report in the original design (HashMap + full sort) ==
+n          100k lookups (ms)      evening report (ms)    report / lookups  
+50000      17.74                  45.93                  2.6               x
+200000     7.38                   167.12                 22.7              x
+500000     16.18                  465.93                 28.8              x
+
+== E. VALIDATION: total report cost over 10 evenings (k new medicines each evening); same data for every design ==
+n0        k/day    | ORIGINAL ms    REDESIGN ms    speed-up | TreeMap ms*    | comparisons orig comparisons new 
+50000     500      | 577.9          111.4          5.2    x | 111.6          |        3,805,419          560,908
+200000    100      | 1811.3         390.1          4.6    x | 387.4          |       14,515,841        2,009,879
+200000    500      | 1666.9         342.5          4.9    x | 462.4          |       14,712,045        2,060,883
+200000    5000     | 2067.1         380.5          5.4    x | 440.9          |       16,853,721        2,776,593
